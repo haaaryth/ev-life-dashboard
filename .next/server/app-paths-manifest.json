@@ -1,0 +1,13 @@
+{
+  "/api/dashboard/stats/route": "app/api/dashboard/stats/route.js",
+  "/api/bookings/route": "app/api/bookings/route.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/login/page": "app/login/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/servicecentre/page": "app/servicecentre/page.js",
+  "/servicecentre/profile/page": "app/servicecentre/profile/page.js",
+  "/servicecentre/schedule/page": "app/servicecentre/schedule/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/servicecentre/bookings/page": "app/servicecentre/bookings/page.js",
+  "/servicecentre/pending/page": "app/servicecentre/pending/page.js"
+}

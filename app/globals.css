@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+body { font-family: 'Outfit', sans-serif; background: #0A0A0F; color: #F1F2F6; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #141420; }
+::-webkit-scrollbar-thumb { background: #44445A; border-radius: 2px; }
+
+.pill { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; }
+.pill-green { background: rgba(0,214,143,.12); color: #00D68F; }
+.pill-red { background: rgba(255,71,87,.12); color: #FF4757; }
+.pill-yellow { background: rgba(255,165,2,.12); color: #FFA502; }
+.pill-blue { background: rgba(84,160,255,.12); color: #54A0FF; }
