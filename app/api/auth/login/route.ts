@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
       }
 
       role = 'servicecentre';
-      centreId = userData.serviceCentreId; // e.g., "sc08"
-      centreName = userData.name;         // e.g., "EVLife Service Centre — KL Sentral"
+      centreId = userData.serviceCentreId;
+      centreName = userData.name;         
     }
 
     // 5. Create the token with the specific centreId

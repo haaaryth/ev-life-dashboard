@@ -23,37 +23,34 @@ export default function AdminBookings() {
 
   const load = useCallback(async () => {
   setLoading(true);
-
   try {
     const params = new URLSearchParams();
     if (statusFilter) params.set('status', statusFilter);
     if (search) params.set('search', search);
 
-    const r = await fetch('/api/bookings?' + params, {
-      credentials: 'include', // ✅ important for auth later
-    });
+    const r = await fetch('/api/bookings?' + params);
+    const result = await r.json();
 
-    if (!r.ok) {
-      const err = await r.text();
-      console.error("API ERROR:", err);
-      setBookings([]);
-      return;
-    }
+    console.log("FULL API RESULT:", result); // Tengok console untuk confirm structure
 
-    const data = await r.json();
-    console.log("BOOKINGS:", data);
-
-    setBookings(data);
+    // 💡 FIX: Check result.data ATAU result.bookings ATAU result itu sendiri (array)
+    const actualBookings = result.data || result.bookings || (Array.isArray(result) ? result : []);
+    
+    setBookings(actualBookings);
   } catch (err) {
     console.error("FETCH ERROR:", err);
     setBookings([]);
+  } finally {
+    setLoading(false);
   }
-
-  setLoading(false);
 }, [search, statusFilter]);
 
   useEffect(() => { load(); }, [load]);
-  useEffect(() => { fetch('/api/centres').then(r => r.json()).then(setCentres); }, []);
+  useEffect(() => {
+  fetch('/api/centres')
+    .then(r => r.json())
+    .then(res => setCentres(res.data || []));
+}, []);
 
   const showToast = (msg: string, type: 'success'|'error' = 'success') => { setToast(msg); setToastType(type); };
 
