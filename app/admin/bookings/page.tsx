@@ -67,14 +67,15 @@ export default function AdminBookings() {
       });
   }, []);
 
-  // --- FILTER LOGIC ---
   const filtered = bookings.filter(b => {
     const matchesSearch = !search || 
       b.userName?.toLowerCase().includes(search.toLowerCase()) || 
       b.userEmail?.toLowerCase().includes(search.toLowerCase());
     const matchesStatus = !statusFilter || b.status === statusFilter;
-    const matchesCentre = !centreFilter || b.centre === centreFilter;
-    const matchesService = !serviceFilter || b.service === serviceFilter;
+    
+    const matchesCentre = !centreFilter || b.serviceCentreName === centreFilter;
+    const matchesService = !serviceFilter || b.serviceTypeName === serviceFilter;
+    
     return matchesSearch && matchesStatus && matchesCentre && matchesService;
   });
 
@@ -185,9 +186,18 @@ export default function AdminBookings() {
         </div>
       )
     },
-    { key: 'service', label: 'Service' },
-    { key: 'centre', label: 'Centre' },
-    { key: 'date', label: 'Date', render: (v: string, r: any) => v + ' ' + r.time },
+    // 🔥 FIXED: Change 'service' to 'serviceTypeName'
+    { key: 'serviceTypeName', label: 'Service' },
+    
+    // 🔥 FIXED: Change 'centre' to 'serviceCentreName'
+    { key: 'serviceCentreName', label: 'Centre' },
+    
+    // 🔥 FIXED: Target 'bookingDate' and grab 'bookingTime' from row record (r)
+    { 
+      key: 'bookingDate', 
+      label: 'Date', 
+      render: (v: string, r: any) => `${v || ''} ${r.bookingTime || ''}`.trim() || '—'
+    },
     { key: 'amount', label: 'Amount', render: (v: any) => <b style={{ color: '#fff' }}>{v ? 'RM ' + v : 'FREE'}</b> },
     { key: 'status', label: 'Status', render: (v: string) => <StatusPill status={v} /> },
     {

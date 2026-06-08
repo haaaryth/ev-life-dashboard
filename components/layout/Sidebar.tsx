@@ -43,7 +43,7 @@ export default function Sidebar({ role, userName, centreName, pendingCount }: Si
     { icon: <Calendar size={18} />, label: 'Bookings', href: '/admin/bookings', badge: pendingCount },
     { icon: <Users size={18} />, label: 'Users', href: '/admin/users' },
     { icon: <Building2 size={18} />, label: 'Service Centres', href: '/admin/centres' },
-    { icon: <Zap size={18} />, label: 'Charging Stations', href: '/admin/stations' },
+    { icon: <Zap size={18} />, label: 'Charging Sessions', href: '/admin/stations' },
     { icon: <Bell size={18} />, label: 'Notifications', href: '/admin/notifications' },
   ];
 
