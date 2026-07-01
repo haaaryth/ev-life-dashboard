@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
       vehiclePlate: body.vehiclePlate || '—',
       serviceTypeId: serviceTypeId || '',
       serviceTypeName,
-      serviceCentreId: serviceCentreId || '', // Memastikan ID disimpan sewaktu booking baharu dibuat
+      serviceCentreId: serviceCentreId || '', 
       serviceCentreName,
       bookingDate,
       bookingTime,

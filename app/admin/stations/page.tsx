@@ -16,9 +16,8 @@ export default function AdminStations() {
     const r = await fetch('/api/stations');
     const result = await r.json();
     
-    console.log("ISI DATA DARI API:", result); // Lihat di F12 Console!
+    console.log("ISI DATA DARI API:", result); 
 
-    // Cuba kesan di mana array itu berada
     let dataToSet = [];
     if (Array.isArray(result)) {
       dataToSet = result;
@@ -46,7 +45,6 @@ export default function AdminStations() {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Pastikan status dihantar dalam format yang API jangka
           status: status === 'active' ? 'inactive' : 'active', 
         }),
       });
@@ -74,7 +72,6 @@ export default function AdminStations() {
   };
 
   const analytics = useMemo(() => {
-  // Jumlahkan field 'cost' dari setiap dokumen
   const totalRevenue = stations.reduce((a, b) => a + (Number(b.cost) || 0), 0);
   const activeStations = stations.filter(s => s.status === 'active' || s.status === 'completed').length;
 
@@ -106,7 +103,7 @@ export default function AdminStations() {
     ),
   },
   {
-    key: 'cost', // MAPPING FIELD COST DI SINI
+    key: 'cost', 
     label: 'Total Cost',
     render: (v: number) => (
       <span style={{ color: '#00D68F', fontWeight: 700 }}>
@@ -134,23 +131,23 @@ export default function AdminStations() {
   {
     key: 'status',
     label: 'Status',
-    render: (v: string) => <StatusPill status={v} />, // v akan jadi "completed"
+    render: (v: string) => <StatusPill status={v} />, 
   },
-  {
-    key: 'id',
-    label: 'Actions',
-    render: (_: any, r: any) => (
-      <div style={{ display: 'flex', gap: 6 }}>
-        <button onClick={() => toggle(r.id, r.status)} style={btnStyle('#FFA502')}>Toggle</button>
-        <button onClick={() => del(r.id)} style={btnStyle('#FF4757')}>Delete</button>
-      </div>
-    ),
-  },
+  // {
+  //   key: 'id',
+  //   label: 'Actions',
+  //   render: (_: any, r: any) => (
+  //     <div style={{ display: 'flex', gap: 6 }}>
+  //       <button onClick={() => toggle(r.id, r.status)} style={btnStyle('#FFA502')}>Toggle</button>
+  //       <button onClick={() => del(r.id)} style={btnStyle('#FF4757')}>Delete</button>
+  //     </div>
+  //   ),
+  // },
 ];
 
   return (
     <div>
-      <h1 style={{ fontSize: 24, fontWeight: 700, color: '#F1F2F6', marginBottom: 20 }}>EV Charging Stations</h1>
+      <h1 style={{ fontSize: 24, fontWeight: 700, color: '#F1F2F6', marginBottom: 20 }}>EV Charging Sessions</h1>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16, marginBottom: 24 }}>
         <Card label="Total Stations" value={analytics.totalCount} color="#F1F2F6" />
@@ -162,7 +159,6 @@ export default function AdminStations() {
         <DataTable 
           columns={cols} 
           data={stations} 
-          // loading={loading} // Pastikan loading dihantar ke DataTable
           emptyMessage="No stations found" 
         />
       </div>

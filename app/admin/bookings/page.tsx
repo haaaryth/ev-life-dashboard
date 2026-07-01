@@ -186,13 +186,10 @@ export default function AdminBookings() {
         </div>
       )
     },
-    // 🔥 FIXED: Change 'service' to 'serviceTypeName'
     { key: 'serviceTypeName', label: 'Service' },
     
-    // 🔥 FIXED: Change 'centre' to 'serviceCentreName'
     { key: 'serviceCentreName', label: 'Centre' },
     
-    // 🔥 FIXED: Target 'bookingDate' and grab 'bookingTime' from row record (r)
     { 
       key: 'bookingDate', 
       label: 'Date', 

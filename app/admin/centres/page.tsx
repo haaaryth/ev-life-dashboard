@@ -98,7 +98,6 @@ export default function AdminCentres() {
   const [toast, setToast] = useState('');
   const [form, setForm] = useState(blank);
 
-  // ✅ SEARCH STATE
   const [search, setSearch] = useState('');
 
   // ---------------- LOAD ----------------
@@ -199,6 +198,20 @@ export default function AdminCentres() {
     </button>
   );
 
+  // ---------------- STYLES ----------------
+  const submitBtnStyle = {
+    width: '100%',
+    background: '#00D68F',
+    border: 'none',
+    borderRadius: 12,
+    padding: '14px',
+    fontSize: 15,
+    fontWeight: 700,
+    color: '#1C1C2E',
+    cursor: 'pointer',
+    fontFamily: 'Outfit',
+  };
+
   // ---------------- TABLE ----------------
   const columns = [
     { key: 'name', label: 'Centre Name' },
@@ -232,8 +245,7 @@ export default function AdminCentres() {
       ),
     },
   ];
-
-  // ---------------- UI ----------------
+ 
   return (
     <div>
       <h1 style={{ fontSize: 22, fontWeight: 700, marginBottom: 24 }}>
@@ -282,8 +294,8 @@ export default function AdminCentres() {
         <form onSubmit={submitAdd}>
           <FormFields form={form} setForm={setForm} />
 
-          <button type="submit" style={{ width: '100%' }}>
-            Save
+          <button type="submit" style={submitBtnStyle}>
+            Save Centre
           </button>
         </form>
       </Modal>
@@ -292,7 +304,10 @@ export default function AdminCentres() {
       <Modal open={!!editItem} onClose={() => setEditItem(null)} title="Edit Centre">
         <form onSubmit={submitEdit}>
           <FormFields form={form} setForm={setForm} />
-          <button type="submit">Save</button>
+          
+          <button type="submit" style={submitBtnStyle}>
+            Save Changes
+          </button>
         </form>
       </Modal>
 

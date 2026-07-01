@@ -9,7 +9,6 @@ export async function GET(_: NextRequest, { params }: { params: { id: string } }
   const booking = await getBookingById(params.id);
   if (!booking) return apiError('Booking not found', 404);
 
-  // This usually returns { data: booking }
   return apiResponse(booking);
 }
 
@@ -28,7 +27,6 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
 export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
   const user = await getSessionUser();
-  // Ensure your session user object has a role field
   if (!user || user.role !== 'admin') return apiError('Forbidden', 403);
 
   await deleteBooking(params.id);
